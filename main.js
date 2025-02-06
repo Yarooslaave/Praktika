@@ -466,3 +466,29 @@ document.addEventListener("DOMContentLoaded", function () {
   
   });
   
+  // Функция для подсветки активного раздела в сайдбаре при скролле
+document.addEventListener("DOMContentLoaded", function () {
+    const sections = document.querySelectorAll("section");
+    const sidebarLinks = document.querySelectorAll("#sidebarNav .nav-link");
+  
+    function highlightCurrentSection() {
+      let scrollPosition = window.scrollY + 100; // Смещение, чтобы учесть высоту хедера
+  
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute("id");
+  
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          sidebarLinks.forEach((link) => link.classList.remove("active"));
+          const activeLink = document.querySelector(`#sidebarNav a[href="#${sectionId}"]`);
+          if (activeLink) {
+            activeLink.classList.add("active");
+          }
+        }
+      });
+    }
+  
+    window.addEventListener("scroll", highlightCurrentSection);
+  });
+  

@@ -1,139 +1,109 @@
-/* Сброс отступов */
+/* 📌 Общие стили */
 html, body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
     scroll-behavior: smooth;
     overflow-x: hidden; /* Убираем горизонтальный скролл */
-  }
-  
-  /* 🔹 Хедер: фиксированный, текст в центре, цвет как у сайдбара */
- 
-  
-h3 {
-    color: #fff;
-    margin-left: 15px;
-    
 }
-  
-  /* 🔹 Сайдбар (фиксированный, теперь под хедером) */
-  #sidebar {
+
+/* 📌 Хедер */
+#mainHeader {
     position: fixed;
-    top: 0px; /* Отодвигаем вниз, чтобы не перекрывал хедер */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(33, 37, 41, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: white;
+}
+
+/* 📌 Сайдбар (фиксированный) */
+#sidebar {
+    position: fixed;
+    top: 0px;
     left: 0;
     width: 220px;
-    height: calc(100vh - 60px); /* Высота экрана минус хедер */
+    height: calc(100vh - 60px);
     background-color: rgba(33, 37, 41, 0.95);
-    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
     z-index: 999;
-    overflow-y: auto; /* Скролл, если пунктов много */
+    overflow-y: auto;
     padding-top: 1rem;
     padding-bottom: 1rem;
-  }
-  
-  /* 🔹 Основной контент (смещён вправо и вниз под хедер) */
-  #mainContent {
-    margin-left: 220px; /* Учитываем ширину сайдбара */
+}
+
+/* 📌 Основной контент (учитываем сайдбар и хедер) */
+#mainContent {
+    margin-left: 220px;
     padding: 1rem;
-    margin-top: 80px; /* Учитываем высоту фиксированного хедера */
-  }
-  
-  /* 🔹 Графики (уменьшены и компактно расположены) */
-  .chart-container {
-    width: 100%;
-    max-width: 320px; /* Уменьшенный размер */
-    height: 250px; /* Меньше по высоте */
-    margin: 10px auto; /* Меньше расстояние между графиками */
-    position: relative;
-  }
-  
-  /* 🔹 Разделение графиков в сетке */
-  .row .col-12 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* 🔹 Стили ссылок в сайдбаре */
-  #sidebarNav .nav-link {
+    margin-top: 80px;
+}
+
+/* 📌 Стили ссылок в сайдбаре */
+#sidebarNav .nav-link {
     color: #fff !important;
     padding: 0.5rem 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     transition: background-color 0.3s ease;
-  }
-  
-  #sidebarNav .nav-link:hover {
+}
+
+#sidebarNav .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
     color: #fff;
-  }
-  
-  #sidebarNav .nav-link.active {
+}
+
+#sidebarNav .nav-link.active {
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
-  }
-  
-  /* 🔹 Заголовки разделов */
-  section h2 {
+}
+
+/* 📌 Заголовки разделов */
+section h2 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 1rem;
     text-align: center;
-  }
-  
-  /* 🔹 Мобильная версия */
-  @media (max-width: 768px) {
-    #sidebar {
-      position: static;
-      width: 100%;
-      height: auto;
-      box-shadow: none;
-      top: 0;
-    }
-    #mainContent {
-      margin-left: 0;
-      margin-top: 60px; /* Оставляем место под хедер */
-    }
-  }
-  /* Стили для таблицы */
-.table {
+}
+
+/* 📌 Сетка для секций с графиками */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* 📌 Графики 2 в ряд (если два графика в секции) */
+.graph-two {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* 📌 Графики 4 в квадрате (если четыре графика в секции) */
+.graph-four {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-items: center;
+}
+
+/* 📌 Общие размеры для графиков */
+.chart-container, .chart-container-wide {
     width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  /* Уменьшение отступов для графиков */
-  .chart-container {
-    max-width: 320px;
-    height: 250px;
-    margin: 5px auto;
-  }
-  
-  /* 🔹 Контейнеры для графиков (широкие) */
-.chart-container-wide {
-    width: 100%;
-    max-width: 700px;
+    max-width: 350px; /* Фиксированный размер для компактности */
     height: 300px;
     margin: 10px auto;
-  }
-  
+    position: relative;
+}
 
-  /* 🔹 Контейнеры для графиков */
-.chart-container {
-    width: 100%;
-    max-width: 320px;
-    height: 250px;
-    margin: 10px auto;
-  }
-  
-  .chart-container-wide {
-    width: 100%;
-    max-width: 500px;
-    height: 300px;
-    margin: 10px auto;
-  }
-  
-
-  /* 🔹 Контейнер для Spider Web (Radar) диаграммы */
-.chart-container-wide {
+/* 📌 Spider Web (Radar) диаграмма (она больше) */
+.chart-container-radar {
     width: 100%;
     max-width: 500px;
     height: 400px;
@@ -164,3 +134,35 @@ h3 {
     }
   }
   
+
+/* 📌 Таблица */
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* 📌 Мобильная версия */
+@media (max-width: 768px) {
+    #sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        top: 0;
+    }
+    #mainContent {
+        margin-left: 0;
+        margin-top: 60px;
+    }
+    
+    .graph-two, .graph-four {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chart-container, .chart-container-wide {
+        max-width: 90%;
+        height: auto;
+    }
+}
