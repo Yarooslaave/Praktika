@@ -166,3 +166,82 @@ section h2 {
         height: auto;
     }
 }
+/* 📌 Легенда статусов (располагается слева от графика) */
+.status-legend {
+    display: flex;
+    flex-direction: column; /* Размещаем статусы вертикально */
+    align-items: flex-start; /* Выравниваем по левому краю */
+    gap: 5px;
+    margin-right: 15px; /* Отступ от графика */
+    font-size: 14px;
+}
+
+.status-legend span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    width: fit-content;
+}
+
+/* 📌 Легенда статусов (располагается строго вертикально слева от графика) */
+.status-legend {
+    display: flex;
+    flex-direction: column; /* Размещаем статусы вертикально */
+    align-items: flex-start; /* Выравнивание слева */
+    gap: 8px; /* Отступ между строками */
+    margin-right: 20px; /* Отступ от графика */
+    font-size: 14px;
+    min-width: 180px; /* Фиксированная ширина, чтобы надписи не прыгали */
+}
+
+.status-legend span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}
+
+/* 📌 Легенда слева от графика */
+.legend-container {
+    display: flex;
+    flex-direction: column; /* Размещаем статусы вертикально */
+    align-items: flex-start; /* Выравнивание слева */
+    gap: 5px; /* Отступ между строками */
+    margin-right: 15px; /* Отступ от графика */
+    font-size: 14px;
+    min-width: 180px; /* Фиксированная ширина для выравнивания */
+}
+
+.legend-container h6 {
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* 📌 Легенда слева от графика (минимальный отступ) */
+.legend-container {
+    display: flex;
+    flex-direction: column; /* Статусы располагаются вертикально */
+    align-items: flex-start; /* Выравнивание слева */
+    gap: 3px; /* Минимальное расстояние между статусами */
+    margin-right: 8px; /* Минимальный отступ от графика */
+    font-size: 14px;
+    min-width: 140px; /* Уменьшаем ширину, чтобы не сдвигались графики */
+}
+
+.legend-container h6 {
+    margin-bottom: 3px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+

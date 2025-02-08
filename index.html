@@ -58,53 +58,50 @@
     </nav>
   </aside>
 
-  <!-- Основной контент -->
-  <main id="mainContent" class="container-fluid mt-4">
+<!-- Раздел "Успеваемость" -->
+<section id="sectionPerformance" class="mb-5">
+  <h2 class="mb-3">Успеваемость</h2>
+
+  <div class="row">
     
-    <!-- Раздел "Успеваемость" -->
-    <section  class="mb-5">
-      <h2 class="mb-3" id="sectionPerformance">Успеваемость</h2>
-
-      <!-- Сетка: 2 колонки для средних/больших экранов -->
-      <div class="row" >
-        
-        <!-- График 1 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container" >
-            <h5 class="text-center mb-2" >Работа на уроке</h5>
-            <canvas id="chartClassWork"></canvas>
-          </div>
-        </div>
-        
-        <!-- График 2 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container">
-            <h5 class="text-center mb-2">Освоение материала</h5>
-            <canvas id="chartMaterialUnderstanding"></canvas>
-          </div>
-        </div>
-
-        <!-- График 3 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container">
-            <h5 class="text-center mb-2">Самоподготовка</h5>
-            <canvas id="chartSelfPreparation"></canvas>
-          </div>
-        </div>
-
-        <!-- График 4 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container">
-            <h5 class="text-center mb-2">Динамика успеваемости</h5>
-            <canvas id="chartProgressDynamics"></canvas>
-          </div>
-        </div>
-
+    <!-- 🔹 График 1: Работа на уроке -->
+    <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Работа на уроке</h5>
+        <canvas id="chartClassWork"></canvas>
       </div>
-      <p class="text-center mt-4 p-2 rounded" 
-   style="background-color: #f8f9fa; border: 1px solid #ccc;">
-  Комментарий к разделу "Успеваемость"...
-</p>
+    </div>
+
+    <!-- 🔹 График 2: Освоение материала -->
+    <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Освоение материала</h5>
+        <canvas id="chartMaterialUnderstanding"></canvas>
+      </div>
+    </div>
+
+    <!-- 🔹 График 3: Самоподготовка -->
+    <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Самоподготовка</h5>
+        <canvas id="chartSelfPreparation"></canvas>
+      </div>
+    </div>
+
+    <!-- 🔹 График 4: Динамика успеваемости -->
+    <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Динамика успеваемости</h5>
+        <canvas id="chartProgressDynamics"></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="comment-block">
+    Комментарий к разделу "Успеваемость"...
+  </p>
+
     </section>
 
     <!-- Раздел "Самоподготовка" -->

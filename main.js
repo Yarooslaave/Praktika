@@ -28,107 +28,197 @@ document.addEventListener("DOMContentLoaded", function () {
     // Пример создания 4 графиков (Chart.js)
     // ----------------------------
   
-    // 1) Работа на уроке
-    const ctxClassWork = document.getElementById('chartClassWork');
-    if (ctxClassWork) {
-      new Chart(ctxClassWork, {
-        type: 'pie', // например, 'pie'
-        data: {
-          labels: ['Вовлечен', 'Вовлечен с нарушениями', 'Не вовлечен', 'Не вовлечен с нарушениями'],
-          datasets: [{
-            label: 'Работа на уроке',
-            data: [12, 5, 7, 3], // заглушка
-            backgroundColor: ['#4CAF50', '#FFB74D', '#E91E63', '#BDBDBD']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
+// 1) Работа на уроке (динамика вовлечённости ученика)
+const ctxClassWork = document.getElementById('chartClassWork');
+if (ctxClassWork) {
+  new Chart(ctxClassWork, {
+    type: 'bar',
+    data: {
+      // Даты занятий (ось X)
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Статус вовлечённости',
+        data: [3, 2, 4, 1], // Числовые значения
+        backgroundColor: ['#FFB74D', '#E91E63', '#4CAF50', '#9C27B0'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      interaction: {
+        mode: 'nearest', // Подсказка показывается при нажатии рядом с точкой
+        intersect: false // Позволяет показывать подсказки даже при касании рядом со столбцом
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false }, // Скрываем легенду
+        tooltip: { // Улучшенные подсказки
+          enabled: true,
+          displayColors: false, // Убираем цветной индикатор в подсказке
+          bodyFont: { size: 14 }, // Увеличенный шрифт подсказки
+          padding: 10, // Увеличенные отступы
+          callbacks: {
+            label: function(context) {
+              const statuses = {
+                1: 'Не вовлечен с нарушениями',
+                2: 'Не вовлечен',
+                3: 'Вовлечен с нарушениями',
+                4: 'Вовлечен'
+              };
+              let statusText = statuses[context.raw] || 'Неизвестный статус'; 
+              return `${context.label}: ${statusText}`;
             }
           }
         }
-      });
+      }
     }
+  });
+}
   
-    // 2) Освоение материала
-    const ctxMaterial = document.getElementById('chartMaterialUnderstanding');
-    if (ctxMaterial) {
-      new Chart(ctxMaterial, {
-        type: 'bar', // столбчатая
-        data: {
-          labels: ['Низкое', 'Среднее', 'Высокое'],
-          datasets: [{
-            label: 'Освоение материала',
-            data: [4, 8, 10], // заглушка
-            backgroundColor: ['#EF5350', '#FFEE58', '#66BB6A']
-          }]
-        },
-        options: {
-          responsive: true,
-          indexAxis: 'y', // горизонтальные столбики
-          scales: {
-            x: {
-              beginAtZero: true
-            }
-          },
-          plugins: {
-            legend: {
-              display: false
+   // 2) Освоение материала (по датам)
+const ctxMaterial = document.getElementById('chartMaterialUnderstanding');
+if (ctxMaterial) {
+  new Chart(ctxMaterial, {
+    type: 'bar',
+    data: {
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Освоение материала',
+        data: [1, 2, 3, 2], // Числовые значения
+        backgroundColor: ['#EF5350', '#FFEE58', '#66BB6A', '#FFEE58'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const levels = {
+                1: 'Низкое',
+                2: 'Среднее',
+                3: 'Высокое'
+              };
+              let levelText = levels[context.raw] || 'Неизвестный уровень';
+              return `${context.label}: ${levelText}`;
             }
           }
         }
-      });
+      }
     }
-  
-    // 3) Самоподготовка
-    const ctxSelfPrep = document.getElementById('chartSelfPreparation');
-    if (ctxSelfPrep) {
-      new Chart(ctxSelfPrep, {
-        type: 'pie',
-        data: {
-          labels: ['В полном объёме', 'Частично', 'Не выполняет'],
-          datasets: [{
-            label: 'Самоподготовка',
-            data: [9, 4, 2], // заглушка
-            backgroundColor: ['#2196F3', '#FFC107', '#F44336']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
+  });
+}
+
+// 3) Самоподготовка (по датам)
+const ctxSelfPrep = document.getElementById('chartSelfPreparation');
+if (ctxSelfPrep) {
+  new Chart(ctxSelfPrep, {
+    type: 'bar',
+    data: {
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Самоподготовка',
+        data: [3, 2, 1, 3], // Числовые значения
+        backgroundColor: ['#2196F3', '#FFC107', '#F44336', '#2196F3'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const statuses = {
+                1: 'Не выполняет',
+                2: 'Частично',
+                3: 'В полном объёме'
+              };
+              let statusText = statuses[context.raw] || 'Неизвестный статус';
+              return `${context.label}: ${statusText}`;
             }
           }
         }
-      });
+      }
     }
-  
-    // 4) Динамика успеваемости
-    const ctxDynamics = document.getElementById('chartProgressDynamics');
-    if (ctxDynamics) {
-      new Chart(ctxDynamics, {
-        type: 'doughnut',
-        data: {
-          labels: ['Положительная', 'Нет изменений', 'Отрицательная'],
-          datasets: [{
-            label: 'Динамика успеваемости',
-            data: [7, 10, 3], // заглушка
-            backgroundColor: ['#4CAF50', '#9E9E9E', '#f44336']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
+  });
+}
+
+// 4) Динамика успеваемости (по датам)
+const ctxDynamics = document.getElementById('chartProgressDynamics');
+if (ctxDynamics) {
+  new Chart(ctxDynamics, {
+    type: 'bar',
+    data: {
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Динамика успеваемости',
+        data: [3, 2, 1, 3], // Числовые значения
+        backgroundColor: ['#4CAF50', '#9E9E9E', '#f44336', '#4CAF50'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const dynamics = {
+                1: 'Отрицательная',
+                2: 'Нет изменений',
+                3: 'Положительная'
+              };
+              let dynamicText = dynamics[context.raw] || 'Неизвестный статус';
+              return `${context.label}: ${dynamicText}`;
             }
           }
         }
-      });
+      }
     }
+  });
+}
+
+
   
   });
   document.addEventListener("DOMContentLoaded", function () {
