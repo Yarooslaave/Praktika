@@ -62,88 +62,96 @@
   <main id="mainContent" class="container-fluid mt-4">
     
     <!-- Раздел "Успеваемость" -->
-    <section  class="mb-5">
-      <h2 class="mb-3" id="sectionPerformance">Успеваемость</h2>
+<section class="mb-5 ">
+  <h2 class="mb-3" id="sectionPerformance">Успеваемость</h2>
 
-      <!-- Сетка: 2 колонки для средних/больших экранов -->
-      <div class="row" >
-        
-        <!-- График 1 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container" >
-            <h5 class="text-center mb-2" >Работа на уроке</h5>
-            <canvas id="chartClassWork"></canvas>
-          </div>
-        </div>
-        
-        <!-- График 2 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container">
-            <h5 class="text-center mb-2">Освоение материала</h5>
-            <canvas id="chartMaterialUnderstanding"></canvas>
-          </div>
-        </div>
-
-        <!-- График 3 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container">
-            <h5 class="text-center mb-2">Самоподготовка</h5>
-            <canvas id="chartSelfPreparation"></canvas>
-          </div>
-        </div>
-
-        <!-- График 4 -->
-        <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-          <div class="chart-container">
-            <h5 class="text-center mb-2">Динамика успеваемости</h5>
-            <canvas id="chartProgressDynamics"></canvas>
-          </div>
-        </div>
-
+  <!-- Первая строка: 3 круговых диаграммы -->
+  <div class="row">
+    
+    <!-- График: Работа на уроке (круг) -->
+    <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Работа на уроке</h5>
+        <canvas id="chartClassWork"></canvas>
       </div>
-    </section>
-
-    <!-- Раздел "Самоподготовка" -->
-   <!-- 🔹 Раздел "Самоподготовка" -->
-<section id="sectionSelfStudy" class="mb-5">
-    <h2 class="mb-3">Самоподготовка</h2>
-  
-    <div class="row">
-      
-      <!-- 🔹 График 1: Общая посещаемость самоподготовки -->
-      <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-        <div class="chart-container">
-          <h5 class="text-center mb-2">Общая посещаемость</h5>
-          <canvas id="chartAttendance"></canvas>
-        </div>
-      </div>
-  
-      <!-- 🔹 График 2: Посещаемость по предметам -->
-      <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-        <div class="chart-container">
-          <h5 class="text-center mb-2">Посещаемость по предметам</h5>
-          <canvas id="chartSubjects"></canvas>
-        </div>
-      </div>
-  
-      <!-- 🔹 График 3: Работа на занятии -->
-      <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-        <div class="chart-container">
-          <h5 class="text-center mb-2">Работа на занятии</h5>
-          <canvas id="chartClasswork"></canvas>
-        </div>
-      </div>
-  
-      <!-- 🔹 График 4: Полнота выполнения заданий -->
-      <div class="col-12 col-md-6 d-flex justify-content-center mb-4">
-        <div class="chart-container">
-          <h5 class="text-center mb-2">Полнота выполнения заданий</h5>
-          <canvas id="chartTasks"></canvas>
-        </div>
-      </div>
-  
     </div>
-  </section>
+
+    <!-- График: Самоподготовка (круг) -->
+    <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Самоподготовка</h5>
+        <canvas id="chartSelfPreparation"></canvas>
+      </div>
+    </div>
+
+    <!-- График: Динамика успеваемости (круг/пончиковая) -->
+    <div class="col-12 col-md-4 d-flex justify-content-center mb-4">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Динамика успеваемости</h5>
+        <canvas id="chartProgressDynamics"></canvas>
+      </div>
+    </div>
+
+  </div><!-- /row -->
+
+  <!-- Вторая строка: широкая диаграмма (полосовидная) -->
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center mb-4">
+      <div class="chart-container-wide">
+        <h5 class="text-center mb-2">Освоение материала</h5>
+        <canvas id="chartMaterialUnderstanding"></canvas>
+      </div>
+    </div>
+  </div><!-- /row -->
+</section>
+
+
+<!-- 🔹 Раздел "Самоподготовка" -->
+<section id="sectionSelfStudy" class="mb-5">
+  <h2 class="mb-3 text-center">Самоподготовка</h2>
+
+  <!-- Первая строка: 2 круговые диаграммы (Одинаковые размеры, ровные) -->
+  <div class="row g-3 justify-content-center">
+
+    <div class="col-12 col-md-6 d-flex justify-content-center">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Общая посещаемость</h5>
+        <canvas id="chartAttendance"></canvas>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 d-flex justify-content-center">
+      <div class="chart-container">
+        <h5 class="text-center mb-2">Работа на занятии</h5>
+        <canvas id="chartClasswork"></canvas>
+      </div>
+    </div>
+
+  </div><!-- /row -->
+
+  <!-- Вторая строка: 2 полосовые диаграммы (Одинаковые размеры, ровные) -->
+  <div class="row g-3 justify-content-center">
+
+    <div class="col-12 col-md-6 d-flex justify-content-center">
+      <div class="chart-container-wide">
+        <h5 class="text-center mb-2">Посещаемость по предметам</h5>
+        <canvas id="chartSubjects"></canvas>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 d-flex justify-content-center">
+      <div class="chart-container-wide">
+        <h5 class="text-center mb-2">Полнота выполнения заданий</h5>
+        <canvas id="chartTasks"></canvas>
+      </div>
+    </div>
+
+  </div><!-- /row -->
+
+</section>
+
+
+
   
 
     <!-- 🔹 Раздел "Индивидуальный трек" -->
@@ -210,11 +218,11 @@
 
     <!-- Раздел "Развитие личностных качеств" -->
     <!-- 🔹 Раздел "Развитие личностных качеств" -->
-<section  class="mb-5">
-    <h2 class="mb-3" id="sectionPersonalDevelopment">Развитие личностных качеств</h2>
+<section  class="mb-5" id="sectionPersonalDevelopment">
+    <h2 class="mb-3" >Развитие личностных качеств</h2>
   
     <div class="row justify-content-center">
-      <div class="col-12 col-md-8 d-flex justify-content-center">
+      <div class="col-12 d-flex justify-content-center mb-4">
         <div class="chart-container-wide">
           <h5 class="text-center mb-2">Развитие личностных качеств</h5>
           <canvas id="chartPersonalSkills"></canvas>
