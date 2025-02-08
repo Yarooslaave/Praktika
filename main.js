@@ -28,107 +28,197 @@ document.addEventListener("DOMContentLoaded", function () {
     // Пример создания 4 графиков (Chart.js)
     // ----------------------------
   
-    // 1) Работа на уроке
-    const ctxClassWork = document.getElementById('chartClassWork');
-    if (ctxClassWork) {
-      new Chart(ctxClassWork, {
-        type: 'pie', // например, 'pie'
-        data: {
-          labels: ['Вовлечен', 'Вовлечен с нарушениями', 'Не вовлечен', 'Не вовлечен с нарушениями'],
-          datasets: [{
-            label: 'Работа на уроке',
-            data: [12, 5, 7, 3], // заглушка
-            backgroundColor: ['#4CAF50', '#FFB74D', '#E91E63', '#BDBDBD']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
+// 1) Работа на уроке (динамика вовлечённости ученика)
+const ctxClassWork = document.getElementById('chartClassWork');
+if (ctxClassWork) {
+  new Chart(ctxClassWork, {
+    type: 'bar',
+    data: {
+      // Даты занятий (ось X)
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Статус вовлечённости',
+        data: [3, 2, 4, 1], // Числовые значения
+        backgroundColor: ['#FFB74D', '#E91E63', '#4CAF50', '#9C27B0'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      interaction: {
+        mode: 'nearest', // Подсказка показывается при нажатии рядом с точкой
+        intersect: false // Позволяет показывать подсказки даже при касании рядом со столбцом
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false }, // Скрываем легенду
+        tooltip: { // Улучшенные подсказки
+          enabled: true,
+          displayColors: false, // Убираем цветной индикатор в подсказке
+          bodyFont: { size: 14 }, // Увеличенный шрифт подсказки
+          padding: 10, // Увеличенные отступы
+          callbacks: {
+            label: function(context) {
+              const statuses = {
+                1: 'Не вовлечен с нарушениями',
+                2: 'Не вовлечен',
+                3: 'Вовлечен с нарушениями',
+                4: 'Вовлечен'
+              };
+              let statusText = statuses[context.raw] || 'Неизвестный статус'; 
+              return `${context.label}: ${statusText}`;
             }
           }
         }
-      });
+      }
     }
+  });
+}
   
-    // 2) Освоение материала
-    const ctxMaterial = document.getElementById('chartMaterialUnderstanding');
-    if (ctxMaterial) {
-      new Chart(ctxMaterial, {
-        type: 'bar', // столбчатая
-        data: {
-          labels: ['Низкое', 'Среднее', 'Высокое'],
-          datasets: [{
-            label: 'Освоение материала',
-            data: [4, 8, 10], // заглушка
-            backgroundColor: ['#EF5350', '#FFEE58', '#66BB6A']
-          }]
-        },
-        options: {
-          responsive: true,
-          indexAxis: 'y', // горизонтальные столбики
-          scales: {
-            x: {
-              beginAtZero: true
-            }
-          },
-          plugins: {
-            legend: {
-              display: false
+   // 2) Освоение материала (по датам)
+const ctxMaterial = document.getElementById('chartMaterialUnderstanding');
+if (ctxMaterial) {
+  new Chart(ctxMaterial, {
+    type: 'bar',
+    data: {
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Освоение материала',
+        data: [1, 2, 3, 2], // Числовые значения
+        backgroundColor: ['#EF5350', '#FFEE58', '#66BB6A', '#FFEE58'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const levels = {
+                1: 'Низкое',
+                2: 'Среднее',
+                3: 'Высокое'
+              };
+              let levelText = levels[context.raw] || 'Неизвестный уровень';
+              return `${context.label}: ${levelText}`;
             }
           }
         }
-      });
+      }
     }
-  
-    // 3) Самоподготовка
-    const ctxSelfPrep = document.getElementById('chartSelfPreparation');
-    if (ctxSelfPrep) {
-      new Chart(ctxSelfPrep, {
-        type: 'pie',
-        data: {
-          labels: ['В полном объёме', 'Частично', 'Не выполняет'],
-          datasets: [{
-            label: 'Самоподготовка',
-            data: [9, 4, 2], // заглушка
-            backgroundColor: ['#2196F3', '#FFC107', '#F44336']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
+  });
+}
+
+// 3) Самоподготовка (по датам)
+const ctxSelfPrep = document.getElementById('chartSelfPreparation');
+if (ctxSelfPrep) {
+  new Chart(ctxSelfPrep, {
+    type: 'bar',
+    data: {
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Самоподготовка',
+        data: [3, 2, 1, 3], // Числовые значения
+        backgroundColor: ['#2196F3', '#FFC107', '#F44336', '#2196F3'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const statuses = {
+                1: 'Не выполняет',
+                2: 'Частично',
+                3: 'В полном объёме'
+              };
+              let statusText = statuses[context.raw] || 'Неизвестный статус';
+              return `${context.label}: ${statusText}`;
             }
           }
         }
-      });
+      }
     }
-  
-    // 4) Динамика успеваемости
-    const ctxDynamics = document.getElementById('chartProgressDynamics');
-    if (ctxDynamics) {
-      new Chart(ctxDynamics, {
-        type: 'doughnut',
-        data: {
-          labels: ['Положительная', 'Нет изменений', 'Отрицательная'],
-          datasets: [{
-            label: 'Динамика успеваемости',
-            data: [7, 10, 3], // заглушка
-            backgroundColor: ['#4CAF50', '#9E9E9E', '#f44336']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
+  });
+}
+
+// 4) Динамика успеваемости (по датам)
+const ctxDynamics = document.getElementById('chartProgressDynamics');
+if (ctxDynamics) {
+  new Chart(ctxDynamics, {
+    type: 'bar',
+    data: {
+      labels: ['2023-01-01', '2023-01-05', '2023-01-10', '2023-01-15'],
+      datasets: [{
+        label: 'Динамика успеваемости',
+        data: [3, 2, 1, 3], // Числовые значения
+        backgroundColor: ['#4CAF50', '#9E9E9E', '#f44336', '#4CAF50'], // Цвета
+        borderColor: '#333',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const dynamics = {
+                1: 'Отрицательная',
+                2: 'Нет изменений',
+                3: 'Положительная'
+              };
+              let dynamicText = dynamics[context.raw] || 'Неизвестный статус';
+              return `${context.label}: ${dynamicText}`;
             }
           }
         }
-      });
+      }
     }
+  });
+}
+
+
   
   });
   document.addEventListener("DOMContentLoaded", function () {
@@ -246,108 +336,270 @@ document.addEventListener("DOMContentLoaded", function () {
         understandingCounts[item.understanding]++;
       }
     });
-  
-    // 🔹 График "Работа на занятии"
-    const ctxClasswork = document.getElementById('chartIndividualClasswork');
-    if (ctxClasswork) {
-      new Chart(ctxClasswork, {
-        type: 'pie',
-        data: {
-          labels: Object.keys(classworkCounts),
-          datasets: [{
-            data: Object.values(classworkCounts),
-            backgroundColor: ['#4CAF50', '#FFC107', '#E91E63', '#BDBDBD']
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: { legend: { position: 'bottom' } }
-        }
-      });
-    }
-  
-    // 🔹 График "Освоение материала"
-    const ctxUnderstanding = document.getElementById('chartIndividualUnderstanding');
-    if (ctxUnderstanding) {
-      new Chart(ctxUnderstanding, {
-        type: 'bar',
-        data: {
-          labels: Object.keys(understandingCounts),
-          datasets: [{
-            label: 'Освоение материала',
-            data: Object.values(understandingCounts),
-            backgroundColor: ['#EF5350', '#FFEE58', '#66BB6A']
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: { y: { beginAtZero: true } },
-          plugins: { legend: { display: false } }
-        }
-      });
-    }
-  
   });
-  
 
-  document.addEventListener("DOMContentLoaded", function () {
+  // =====================================
+  // 2) Charts for "Успеваемость" section
+  //    (sectionPerformance)
+  // =====================================
 
-    // 🔹 Пример данных (замените на реальные данные)
-    const individualTrackData = [
-      { discipline: "Математика", classwork: [8, 5, 3, 2], understanding: [4, 6, 7] },
-      { discipline: "Физика", classwork: [6, 4, 5, 3], understanding: [3, 5, 7] },
-      { discipline: "Русский язык", classwork: [7, 6, 2, 1], understanding: [2, 4, 9] }
-    ];
-  
-    // 🔹 Подготовка данных для графиков
-    const disciplineLabels = individualTrackData.map(d => d.discipline);
-  
-    // 🔹 График "Работа на занятии" (4 категории)
-    const ctxClasswork = document.getElementById('chartIndividualClasswork');
-    if (ctxClasswork) {
-      new Chart(ctxClasswork, {
-        type: 'bar',
-        data: {
-          labels: disciplineLabels,
-          datasets: [
-            { label: 'Вовлечен', data: individualTrackData.map(d => d.classwork[0]), backgroundColor: '#4CAF50' },
-            { label: 'Вовлечен с нарушением', data: individualTrackData.map(d => d.classwork[1]), backgroundColor: '#FFC107' },
-            { label: 'Не вовлечен', data: individualTrackData.map(d => d.classwork[2]), backgroundColor: '#E91E63' },
-            { label: 'Не вовлечен с нарушением', data: individualTrackData.map(d => d.classwork[3]), backgroundColor: '#9C27B0' }
-          ]
-        },
-        options: {
-          responsive: true,
-          scales: { y: { beginAtZero: true } },
-          plugins: { legend: { position: 'bottom' } }
+  // График 1: Работа на уроке
+  const ctxClassWork = document.getElementById('chartClassWork');
+  if (ctxClassWork) {
+    new Chart(ctxClassWork, {
+      type: 'pie',
+      data: {
+        labels: ['Вовлечен', 'Вовлечен с нарушениями', 'Не вовлечен', 'Не вовлечен с нарушениями'],
+        datasets: [{
+          label: 'Работа на уроке',
+          data: [12, 5, 7, 3], // заглушка
+          backgroundColor: ['#4CAF50', '#FFB74D', '#E91E63', '#BDBDBD']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
         }
-      });
-    }
-  
-    // 🔹 График "Освоение материала" (3 категории)
-    const ctxUnderstanding = document.getElementById('chartIndividualUnderstanding');
-    if (ctxUnderstanding) {
-      new Chart(ctxUnderstanding, {
-        type: 'bar',
-        data: {
-          labels: disciplineLabels,
-          datasets: [
-            { label: 'Низкое', data: individualTrackData.map(d => d.understanding[0]), backgroundColor: '#EF5350' },
-            { label: 'Среднее', data: individualTrackData.map(d => d.understanding[1]), backgroundColor: '#FFEE58' },
-            { label: 'Высокое', data: individualTrackData.map(d => d.understanding[2]), backgroundColor: '#66BB6A' }
-          ]
+      }
+    });
+  }
+
+  // График 2: Освоение материала
+  const ctxMaterial = document.getElementById('chartMaterialUnderstanding');
+  if (ctxMaterial) {
+    new Chart(ctxMaterial, {
+      type: 'bar',
+      data: {
+        labels: ['Низкое', 'Среднее', 'Высокое'],
+        datasets: [{
+          label: 'Освоение материала',
+          data: [4, 8, 10], // заглушка
+          backgroundColor: ['#EF5350', '#FFEE58', '#66BB6A']
+        }]
+      },
+      options: {
+        responsive: true,
+        indexAxis: 'y', // горизонтальные столбики
+        scales: {
+          x: { beginAtZero: true }
         },
-        options: {
-          responsive: true,
-          scales: { y: { beginAtZero: true } },
-          plugins: { legend: { position: 'bottom' } }
+        plugins: {
+          legend: { display: false }
         }
-      });
-    }
+      }
+    });
+  }
+
+  // График 3: Самоподготовка
+  const ctxSelfPrep = document.getElementById('chartSelfPreparation');
+  if (ctxSelfPrep) {
+    new Chart(ctxSelfPrep, {
+      type: 'pie',
+      data: {
+        labels: ['В полном объёме', 'Частично', 'Не выполняет'],
+        datasets: [{
+          label: 'Самоподготовка',
+          data: [9, 4, 2],
+          backgroundColor: ['#2196F3', '#FFC107', '#F44336']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  }
+
+  // График 4: Динамика успеваемости
+  const ctxDynamics = document.getElementById('chartProgressDynamics');
+  if (ctxDynamics) {
+    new Chart(ctxDynamics, {
+      type: 'doughnut',
+      data: {
+        labels: ['Положительная', 'Нет изменений', 'Отрицательная'],
+        datasets: [{
+          label: 'Динамика успеваемости',
+          data: [7, 10, 3],
+          backgroundColor: ['#4CAF50', '#9E9E9E', '#F44336']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  }
+
+
+  // =====================================
+  // 3) Charts for "Самоподготовка" section
+  //    (sectionSelfStudy)
+  // =====================================
+
+  // График 1: Общая посещаемость самоподготовки
+  const ctxAttendance = document.getElementById('chartAttendance');
+  if (ctxAttendance) {
+    new Chart(ctxAttendance, {
+      type: 'pie',
+      data: {
+        labels: ['Регулярно посещает', 'Эпизодически посещает', 'Не посещает'],
+        datasets: [{
+          data: [12, 7, 4],
+          backgroundColor: ['#4CAF50', '#FFC107', '#F44336']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  }
+
+  // График 2: Посещаемость по предметам (группированный Bar Chart)
+  const ctxSubjects = document.getElementById('chartSubjects');
+  if (ctxSubjects) {
+    new Chart(ctxSubjects, {
+      type: 'bar',
+      data: {
+        labels: ['Русский', 'Математика', 'Физика'],
+        datasets: [
+          { label: 'Регулярно',     data: [10, 8, 6], backgroundColor: '#4CAF50' },
+          { label: 'Эпизодически', data: [5, 6, 3], backgroundColor: '#FFC107' },
+          { label: 'Не посещает',   data: [2, 3, 5], backgroundColor: '#F44336' }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  }
+
+  // График 3: Работа на занятии
+  const ctxClassworkSelf = document.getElementById('chartClasswork'); 
+  if (ctxClassworkSelf) {
+    new Chart(ctxClassworkSelf, {
+      type: 'pie',
+      data: {
+        labels: ['Самостоятельно', 'Иногда за помощью', 'Не может сам'],
+        datasets: [{
+          data: [10, 6, 5],
+          backgroundColor: ['#4CAF50', '#FFC107', '#F44336']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom' }
+        }
+      }
+    });
+  }
+
+  // График 4: Полнота выполнения заданий (Stacked Bar Chart)
+  const ctxTasks = document.getElementById('chartTasks');
+  if (ctxTasks) {
+    new Chart(ctxTasks, {
+      type: 'bar',
+      data: {
+        labels: ['Русский', 'Математика', 'Физика'],
+        datasets: [
+          { label: 'В полном объёме', data: [8, 7, 5], backgroundColor: '#4CAF50' },
+          { label: 'Частично',        data: [4, 5, 6], backgroundColor: '#FFC107' }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } },
+        scales: {
+          x: { stacked: true },
+          y: { stacked: true }
+        }
+      }
+    });
+  }
+
+
+  // =====================================
+  // 4) Charts for "Индивидуальный трек" section
+  //    (sectionIndividual)
+  // =====================================
+
+  // Пример данных (замените на реальные)
+  const individualTrackData = [
+    { discipline: "Математика",    classwork: [8, 5, 3, 2], understanding: [4, 6, 7] },
+    { discipline: "Физика",        classwork: [6, 4, 5, 3], understanding: [3, 5, 7] },
+    { discipline: "Русский язык",  classwork: [7, 6, 2, 1], understanding: [2, 4, 9] },
+    { discipline: "Математика",    classwork: [8, 5, 3, 2], understanding: [4, 6, 7] },
+    { discipline: "Физика",        classwork: [6, 4, 5, 3], understanding: [3, 5, 7] },
+    { discipline: "Русский язык",  classwork: [7, 6, 2, 1], understanding: [2, 4, 9] },
+    { discipline: "Математика",    classwork: [8, 5, 3, 2], understanding: [4, 6, 7] },
+    { discipline: "Физика",        classwork: [6, 4, 5, 3], understanding: [3, 5, 7] },
+    { discipline: "Русский язык",  classwork: [7, 6, 2, 1], understanding: [2, 4, 9] },
+    { discipline: "Математика",    classwork: [8, 5, 3, 2], understanding: [4, 6, 7] },
+    { discipline: "Физика",        classwork: [6, 4, 5, 3], understanding: [3, 5, 7] },
+    { discipline: "Русский язык",  classwork: [7, 6, 2, 1], understanding: [2, 4, 9] }
+
+  ];
   
-  });
-  
-  document.addEventListener("DOMContentLoaded", function () {
+  // Подготовка данных для графиков
+  const disciplineLabels = individualTrackData.map(d => d.discipline);
+
+  // График "Работа на занятии" (4 категории)
+  const ctxIndividualClasswork = document.getElementById('chartIndividualClasswork');
+  if (ctxIndividualClasswork) {
+    new Chart(ctxIndividualClasswork, {
+      type: 'bar',
+      data: {
+        labels: disciplineLabels,
+        datasets: [
+          { label: 'Вовлечен',                data: individualTrackData.map(d => d.classwork[0]), backgroundColor: '#4CAF50' },
+          { label: 'Вовлечен с нарушением',   data: individualTrackData.map(d => d.classwork[1]), backgroundColor: '#FFC107' },
+          { label: 'Не вовлечен',             data: individualTrackData.map(d => d.classwork[2]), backgroundColor: '#E91E63' },
+          { label: 'Не вовлечен с нарушением',data: individualTrackData.map(d => d.classwork[3]), backgroundColor: '#9C27B0' }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } },
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  }
+
+  // График "Освоение материала" (3 категории)
+  const ctxIndividualUnderstanding = document.getElementById('chartIndividualUnderstanding');
+  if (ctxIndividualUnderstanding) {
+    new Chart(ctxIndividualUnderstanding, {
+      type: 'bar',
+      data: {
+        labels: disciplineLabels,
+        datasets: [
+          { label: 'Низкое',   data: individualTrackData.map(d => d.understanding[0]), backgroundColor: '#EF5350' },
+          { label: 'Среднее',  data: individualTrackData.map(d => d.understanding[1]), backgroundColor: '#FFEE58' },
+          { label: 'Высокое',  data: individualTrackData.map(d => d.understanding[2]), backgroundColor: '#66BB6A' }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } },
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+  }
+
+
+  // =====================================
+  // 5) Charts for "Мягкие навыки" section
+  //    (sectionSoftSkills)
+  // =====================================
 
   // Пример данных (замените на реальные)
   const softSkillsData = {
@@ -494,4 +746,3 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   window.addEventListener("scroll", highlightCurrentSection);
-});
