@@ -1,0 +1,203 @@
+/* ==================================
+   Глобальные стили
+================================== */
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    background-color: #F2ECFF; 
+    overflow-x: hidden;
+  }
+  
+  /* ==================================
+     Сайдбар (меню)
+  ================================== */
+  #sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100vh;
+    /* Градиентный фон */
+    background: linear-gradient(135deg, #2F3B52, #394057);
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+    z-index: 999;
+    overflow-y: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  .sidebar-title {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #ffffff;
+  }
+  
+  #sidebarNav .nav-link {
+    position: relative; /* чтобы разместить hover-border */
+    color: #dcdcdc !important;
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Иконка слева */
+  .menu-icon {
+    margin-right: 8px;
+    width: 18px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Полоска, которая слева выдвигается при hover/active */
+  .hover-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #4DD0E1; /* яркий акцент */
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+  }
+  
+  /* При наведении */
+  #sidebarNav .nav-link:hover {
+    background-color: rgba(255,255,255,0.05) !important;
+    color: #fff !important;
+  }
+  #sidebarNav .nav-link:hover .menu-icon {
+    transform: scale(1.1);
+  }
+  #sidebarNav .nav-link:hover .hover-border {
+    transform: scaleY(1);
+  }
+  
+  /* Активная */
+  #sidebarNav .nav-link.active {
+    background-color: rgba(255,255,255,0.15) !important;
+    color: #fff !important;
+  }
+  #sidebarNav .nav-link.active .hover-border {
+    transform: scaleY(1);
+  }
+  
+  /* ==================================
+     Основной контент
+  ================================== */
+  #mainContent {
+    margin-left: 230px;
+    padding: 2rem 3rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
+  
+  section {
+    display: none;
+    margin-bottom: 2rem;
+  }
+  section.show {
+    display: block;
+  }
+  
+  .section-heading {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #2A2A2A;
+  }
+  
+  /* ==================================
+     Сетка карточек
+  ================================== */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px,1fr));
+    gap: 1.5rem;
+  }
+  
+  .dashboard-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+  
+  .card-heading {
+    background: linear-gradient(45deg, #EBF1FF, #F8F9FD);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .card-heading h5 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #444;
+  }
+  
+  .card-body {
+    flex: 1;
+    padding: 1rem;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card-body canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
+  
+  .comment-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    color: #444;
+  }
+  
+  /* Две карточки по центру + увеличение */
+  .centered-two-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+  .wide-card {
+    max-width: 700px;
+    width: 100%;
+  }
+  .large-chart .card-body {
+    min-height: 450px; 
+  }
+  
+  /* Радар */
+  .single-card-grid {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .large-radar-card {
+    max-width: 700px;
+    width: 100%;
+  }
+  .large-radar-card .card-body {
+    min-height: 500px;
+  }
+  

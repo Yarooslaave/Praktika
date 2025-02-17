@@ -1,0 +1,239 @@
+<!-- Фиксированный сайдбар слева -->
+<aside id="sidebar">
+  <nav class="nav flex-column" id="sidebarNav">
+    <h3 class="text-white sidebar-title">Прогресс ученика</h3>
+
+    <a
+      class="nav-link text-white sidebar-item"
+      href="#"
+      data-target="sectionPerformance"
+    >
+      <i class="fas fa-chart-bar menu-icon"></i>
+      Успеваемость
+      <span class="hover-border"></span>
+    </a>
+    <a
+      class="nav-link text-white sidebar-item"
+      href="#"
+      data-target="sectionSelfStudy"
+    >
+      <i class="fas fa-book-open menu-icon"></i>
+      Самоподготовка
+      <span class="hover-border"></span>
+    </a>
+    <a
+      class="nav-link text-white sidebar-item"
+      href="#"
+      data-target="sectionIndividual"
+    >
+      <i class="fas fa-user-graduate menu-icon"></i>
+      Индивидуальный трек
+      <span class="hover-border"></span>
+    </a>
+    <a
+      class="nav-link text-white sidebar-item"
+      href="#"
+      data-target="sectionSoftSkills"
+    >
+      <i class="fas fa-user-friends menu-icon"></i>
+      Мягкие навыки
+      <span class="hover-border"></span>
+    </a>
+    <a
+      class="nav-link text-white sidebar-item"
+      href="#"
+      data-target="sectionPersonalDevelopment"
+    >
+      <i class="fas fa-bullseye menu-icon"></i>
+      Развитие личностных качеств
+      <span class="hover-border"></span>
+    </a>
+  </nav>
+</aside>
+
+<!-- Основной контент -->
+<main id="mainContent">
+
+  <!-- Раздел "Успеваемость" -->
+  <section id="sectionPerformance">
+    <h2 class="section-heading">Успеваемость</h2>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Работа на уроке</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartClassWork"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Самоподготовка</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartSelfPreparation"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Динамика успеваемости</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartProgressDynamics"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Освоение материала</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartMaterialUnderstanding"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Комментарий -->
+    <div class="comment-card">
+      <p>Комментарий по успеваемости: здесь вы можете написать общую оценку прогресса, рекомендации и т.п.</p>
+    </div>
+  </section>
+
+  <!-- Раздел "Самоподготовка" -->
+  <section id="sectionSelfStudy">
+    <h2 class="section-heading">Самоподготовка</h2>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Общая посещаемость</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartAttendance"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Работа на занятии</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartClasswork"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Посещаемость по предметам</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartSubjects"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Полнота выполнения заданий</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartTasks"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <p>Комментарий по самоподготовке: общее впечатление, рекомендации к улучшению.</p>
+    </div>
+  </section>
+
+  <!-- Раздел "Индивидуальный трек" -->
+  <section id="sectionIndividual">
+    <h2 class="section-heading">Индивидуальный трек</h2>
+
+    <div class="centered-two-cards">
+      <div class="dashboard-card wide-card large-chart">
+        <div class="card-heading">
+          <h5>Работа на занятии (дисциплины)</h5>
+        </div>
+        <div class="card-body big-body">
+          <canvas id="chartIndividualClasswork"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card wide-card large-chart">
+        <div class="card-heading">
+          <h5>Освоение материала (дисциплины)</h5>
+        </div>
+        <div class="card-body big-body">
+          <canvas id="chartIndividualUnderstanding"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <p>Комментарий по индивидуальному треку: можно описать динамику, сложности, планы.</p>
+    </div>
+  </section>
+
+  <!-- Раздел "Мягкие навыки" -->
+  <section id="sectionSoftSkills">
+    <h2 class="section-heading">Мягкие навыки</h2>
+
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Эмоциональный интеллект</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartEmotionalIntelligence"></canvas>
+        </div>
+      </div>
+      
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Лидерство и стратегия</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartLeadership"></canvas>
+        </div>
+      </div>
+
+      <div class="dashboard-card">
+        <div class="card-heading">
+          <h5>Соблюдение правил поведения</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartDiscipline"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <p>Комментарий по мягким навыкам: описание сильных и слабых сторон, достижения и т.п.</p>
+    </div>
+  </section>
+
+  <!-- Раздел "Развитие личностных качеств" -->
+  <section id="sectionPersonalDevelopment">
+    <h2 class="section-heading">Развитие личностных качеств</h2>
+
+    <div class="single-card-grid">
+      <div class="dashboard-card large-radar-card">
+        <div class="card-heading">
+          <h5>Развитие личностных качеств</h5>
+        </div>
+        <div class="card-body">
+          <canvas id="chartPersonalSkills"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="comment-card">
+      <p>Комментарий по личностным качествам: здесь можно поделиться наблюдениями, советами.</p>
+    </div>
+  </section>
+
+</main>
